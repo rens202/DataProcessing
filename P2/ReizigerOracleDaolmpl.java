@@ -15,6 +15,8 @@ public class ReizigerOracleDaolmpl extends OracleBaseDao implements ReizigerDao{
 		getConnection();
 	}
 	
+	OVOracleDaolmpl ov = new OVOracleDaolmpl();
+	
 	public List<Reiziger> findall(){
 		ArrayList<Reiziger> lijst = new ArrayList<Reiziger>();
 		Reiziger reis = null;
@@ -27,7 +29,7 @@ public class ReizigerOracleDaolmpl extends OracleBaseDao implements ReizigerDao{
 			while (rs.next()) {
 				reis = new Reiziger(rs.getInt("REIZIGERID"), rs.getString("VOORLETTERS"), 
 						rs.getString("TUSSENVOEGSEL"), rs.getString("ACHTERNAAM"), 
-						rs.getDate("GEBORTEDATUM"), findKaartById(rs.getInt("REIZIGERID")));
+						rs.getDate("GEBORTEDATUM"), ov.findKaartById(rs.getInt("REIZIGERID")));
 				lijst.add(reis);
 			}
 			rs.close();
@@ -49,7 +51,7 @@ public class ReizigerOracleDaolmpl extends OracleBaseDao implements ReizigerDao{
 		     ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				reis = new Reiziger(rs.getInt("REIZIGERID"), rs.getString("VOORLETTERS"), rs.getString("TUSSENVOEGSEL"), rs.getString("ACHTERNAAM"), rs.getDate("GEBORTEDATUM"), findKaartById(rs.getInt("REIZIGERID")));
+				reis = new Reiziger(rs.getInt("REIZIGERID"), rs.getString("VOORLETTERS"), rs.getString("TUSSENVOEGSEL"), rs.getString("ACHTERNAAM"), rs.getDate("GEBORTEDATUM"), ov.findKaartById(rs.getInt("REIZIGERID")));
 				lijst.add(reis);
 			}
 			rs.close();
@@ -60,26 +62,6 @@ public class ReizigerOracleDaolmpl extends OracleBaseDao implements ReizigerDao{
 		return lijst;
 	}
 	
-	public ArrayList<OVKaart> findKaartById(int reizigerid){
-		ArrayList<OVKaart> lijst = new ArrayList<OVKaart>();
-		OVKaart kaart = null;
-		try {
-			Statement stmt = conn.createStatement();
-		     PreparedStatement ps = conn.prepareStatement("SELECT * FROM OV_CHIPKAART WHERE REIZIGERID = ?");
-		     ps.setInt(1, reizigerid);
-		     ResultSet rs = ps.executeQuery();
-
-			while (rs.next()) {
-				kaart = new OVKaart(rs.getInt("REIZIGERID"), rs.getDate("GELDIGTOT"), rs.getInt("SALDO"), rs.getInt("KLASSE"), rs.getInt("KAARTNUMMER"));
-				lijst.add(kaart);
-			}
-			rs.close();
-			stmt.close();
-		} catch(Exception e) {
-			System.out.println(e);
-		}
-		return lijst;
-	}
 	
 	@Override
 	public Reiziger save(Reiziger rs) throws SQLException {
