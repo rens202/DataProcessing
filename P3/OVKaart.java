@@ -54,9 +54,11 @@ public String toString() {
 			+ "	 -saldo: " + saldo + "\n"
 			+ "	 -reizigerid: "+ reiziger.getReizigerID()  + "\n"
 			+ "  -Deze OVKaart heeft de volgende producten:";
-	
-	for(Product item : producten) {
+	if(producten != null) {
+			for(Product item : producten) {
 		s += "		\nProducten: " + item;
+	}}else {
+		s += "Deze kaart heeft geen Producten";
 	}
 			
 	
@@ -64,7 +66,7 @@ public String toString() {
 }
 
 public String toString2() {
-	String s = " \n\nOVKaart: \n"
+	String s = " \nOVKaart: \n"
 			+ "	 -kaartnummer: " + kaartnummer + "\n"
 			+ "	 -geldigtot " + geldigtot  + "\n"
 			+ "	 -saldo: " + saldo + "\n"

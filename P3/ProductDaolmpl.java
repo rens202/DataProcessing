@@ -17,7 +17,6 @@ public class ProductDaolmpl extends OracleBaseDao implements ProductDao{
 	@Override
 	public ArrayList<Product> getOvProduct(OVKaart kaart) {
 		ArrayList<Product> lijst = new ArrayList<Product>();
-		ArrayList<OVKaart> kaarten = new ArrayList<OVKaart>();
 		try {
 			Statement stmt = conn.createStatement();
 		     PreparedStatement ps = conn.prepareStatement("SELECT p.* FROM PRODUCT p, OV_CHIPKAART_PRODUCT o WHERE o.KAARTNUMMER = ? and p.productnummer = o.PRODUCTNUMMER");

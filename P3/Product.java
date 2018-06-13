@@ -34,12 +34,13 @@ public class Product {
 				 "		\n-productNummer: " + productNummer + "\n"
 				+ "		-productNaam: " + productNaam + "\n"
 				+ "		-beschrijving: "+ beschrijving + "\n"
-				+ "		-prijs: "+ prijs + "\n";
+				+ "		-prijs: "+ prijs + "\n"
+				+ " 	-OVKaarten: ";
 		if(kaarten == null) {
 			return s;
 		}else {
 		for(OVKaart ov : kaarten) {
-			s += "\n 	OVKaarten: " + ov.toString2();
+			s += "\n 	OVKaart: " + ov.toString2();
 			
 		}
 		
