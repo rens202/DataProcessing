@@ -63,5 +63,15 @@ public String toString() {
 	return s;
 }
 
+public String toString2() {
+	String s = " \n\nOVKaart: \n"
+			+ "	 -kaartnummer: " + kaartnummer + "\n"
+			+ "	 -geldigtot " + geldigtot  + "\n"
+			+ "	 -saldo: " + saldo + "\n"
+			+ "	 -reizigerid: "+ reiziger.getReizigerID()  + "\n";
+	
+	return s;
+}
+
 
 }

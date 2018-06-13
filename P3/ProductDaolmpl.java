@@ -24,9 +24,18 @@ public class ProductDaolmpl extends OracleBaseDao implements ProductDao{
 		     ps.setInt(1, kaart.getKaartnummer());
 		     ResultSet rs = ps.executeQuery();
 		     while (rs.next()) {
-				Product product = new Product(rs.getInt("PRODUCTNUMMER"), rs.getString("PRODUCTNAAM"), rs.getString("BESCHRIJVING"), rs.getDouble("PRIJS"));
-				product.addKaarten(kaart);
-		    	 lijst.add(product);
+		    	if(alleproducten != null) {
+		    		for(Product p : alleproducten) {
+		    			if(p.getProductNummer() == rs.getInt("PRODUCTNUMMER")){
+		    				p.addKaarten(kaart);
+		    				lijst.add(p);
+		    			}
+		    		}
+		    		Product product = new Product(rs.getInt("PRODUCTNUMMER"), rs.getString("PRODUCTNAAM"), rs.getString("BESCHRIJVING"), rs.getDouble("PRIJS"));
+    				product.addKaarten(kaart);
+    				alleproducten.add(product);
+    				lijst.add(product);
+		    	}
 					
 		     }
 		     rs.close();

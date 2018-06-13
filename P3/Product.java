@@ -39,9 +39,11 @@ public class Product {
 			return s;
 		}else {
 		for(OVKaart ov : kaarten) {
-			s += "\n 	kaartnummer: " + ov.getKaartnummer();
+			s += "\n 	OVKaarten: " + ov.toString2();
 			
-		}}
+		}
+		
+		s+= "\n Dat waren alle kaarten van dit product.";}
 		return s;
 	}
 	
