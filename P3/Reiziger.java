@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+
 public class Reiziger {
 	private int reizigerid;
 	private String voorletters;
@@ -92,7 +93,11 @@ public class Reiziger {
 		
 	}
 	
-
+	public void setOVKaarten(ArrayList<OVKaart> ov) {
+		ovkaarten = ov;
+	}
+	
+	
 	public void setGBdatum(Date gbd) {
 		gbdatum = gbd;
 	}
@@ -111,8 +116,14 @@ public class Reiziger {
 	
 	public String toString() {
 		String s = "";
-		s += naam + " is geboren op: ";
+		s += "\n\nReiziger " + voorletters + " is geboren op: ";
 		s += gbdatum;
+		s += "\n Heeft reizigerid: " + reizigerid + "\n" ;
+		s += "En heeft de volgende ov kaarten: \n";
+		for(OVKaart item : ovkaarten) {
+			s+= item;
+			
+		}
 		return s;
 	}
 }

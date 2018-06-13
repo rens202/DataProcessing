@@ -7,6 +7,6 @@ import java.util.List;
 
 
 public interface OVDao {
-	public ArrayList<OVKaart> findKaartById(int reizigerid);
+	public ArrayList<OVKaart> findKaartById(Reiziger reiziger);
 
 }

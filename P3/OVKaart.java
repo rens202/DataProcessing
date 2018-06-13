@@ -7,24 +7,24 @@ public class OVKaart {
 	private int kaartnummer;
 	private Date geldigtot;
 	private int saldo;
-	private int reizigerid;
+	private Reiziger reiziger;
 	private int klasse;
 	private ArrayList<Product> producten;
 	
 	
-public OVKaart(int reisid, Date gt, int sl, int kl, int ktnmr) {
+public OVKaart(Reiziger reisid, Date gt, int sl, int kl, int ktnmr) {
 	kaartnummer = ktnmr;
 	geldigtot = gt;
 	saldo = sl;
-	reizigerid = reisid;
+	reiziger = reisid;
 	klasse = kl;
 }
 
-public OVKaart(int reisid, Date gt, int sl, int kl, int ktnmr, ArrayList<Product> prodcu) {
+public OVKaart(Reiziger reisid, Date gt, int sl, int kl, int ktnmr, ArrayList<Product> prodcu) {
 	kaartnummer = ktnmr;
 	geldigtot = gt;
 	saldo = sl;
-	reizigerid = reisid;
+	reiziger = reisid;
 	klasse = kl;
 	producten = prodcu;
 }
@@ -49,27 +49,19 @@ public ArrayList<Product> getProducten(){
 @Override
 public String toString() {
 	String s = " \n\nOVKaart: \n"
-			+ "kaartnummer: " + kaartnummer 
-			+ ", geldigtot " + geldigtot 
-			+ ", saldo: " + saldo
-			+ ", reizigerid: "+ reizigerid
-			+ ", klasse: " + klasse;
-			if(producten != null) {
-			for(Product item : producten) {
-				s += item.toString2();
-			}}else {s+= " GEEN GEKOPPELDE PRODUCTEN \n";}
+			+ "	 -kaartnummer: " + kaartnummer + "\n"
+			+ "	 -geldigtot " + geldigtot  + "\n"
+			+ "	 -saldo: " + saldo + "\n"
+			+ "	 -reizigerid: "+ reiziger.getReizigerID()  + "\n"
+			+ "  -Deze OVKaart heeft de volgende producten:";
+	
+	for(Product item : producten) {
+		s += "		\nProducten: " + item;
+	}
+			
 	
 	return s;
 }
 
-public String toString2() {
-	String s = " \n\nOVKaart: \n"
-			+ "kaartnummer: " + kaartnummer 
-			+ ", geldigtot " + geldigtot 
-			+ ", saldo: " + saldo
-			+ ", reizigerid: "+ reizigerid
-			+ ", klasse: " + klasse;
-	return s;
-}
 
 }

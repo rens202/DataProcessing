@@ -12,17 +12,18 @@ public class OVOracleDaolmpl extends OracleBaseDao implements OVDao{
 	}
 	
 	@Override
-	public ArrayList<OVKaart> findKaartById(int reizigerid){
+	public ArrayList<OVKaart> findKaartById(Reiziger reiziger){
 		ArrayList<OVKaart> lijst = new ArrayList<OVKaart>();
 		OVKaart kaart = null;
 		try {
 			Statement stmt = conn.createStatement();
 		     PreparedStatement ps = conn.prepareStatement("SELECT * FROM OV_CHIPKAART WHERE REIZIGERID = ?");
+		     int reizigerid = reiziger.getReizigerID();
 		     ps.setInt(1, reizigerid);
 		     ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				kaart = new OVKaart(rs.getInt("REIZIGERID"), rs.getDate("GELDIGTOT"), rs.getInt("SALDO"), rs.getInt("KLASSE"), rs.getInt("KAARTNUMMER"));
+				kaart = new OVKaart(reiziger, rs.getDate("GELDIGTOT"), rs.getInt("SALDO"), rs.getInt("KLASSE"), rs.getInt("KAARTNUMMER"));
 				lijst.add(kaart);
 			}
 			rs.close();

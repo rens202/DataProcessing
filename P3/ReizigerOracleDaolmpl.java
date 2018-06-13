@@ -14,8 +14,29 @@ public class ReizigerOracleDaolmpl extends OracleBaseDao implements ReizigerDao{
 	public ReizigerOracleDaolmpl() throws SQLException {
 		getConnection();
 	}
-	ProductDaolmpl product = new ProductDaolmpl();
 	OVOracleDaolmpl ov = new OVOracleDaolmpl();
+	
+	public Reiziger findByReizigerId(int reizigerid) {
+		Reiziger reis = null;
+
+		try {
+
+			Statement stmt = conn.createStatement();
+			PreparedStatement ps = conn.prepareStatement("select * from REIZIGER where GEBORTEDATUM = ?;");
+			ps.setInt(1, reizigerid);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				reis = new Reiziger(rs.getInt("REIZIGERID"), rs.getString("VOORLETTERS"), rs.getString("TUSSENVOEGSEL"),
+						rs.getString("ACHTERNAAM"), rs.getDate("GEBORTEDATUM"));
+			}
+			rs.close();
+			stmt.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return reis;
+	}
 	
 	public List<Reiziger> findall(){
 		ArrayList<Reiziger> lijst = new ArrayList<Reiziger>();
@@ -29,7 +50,8 @@ public class ReizigerOracleDaolmpl extends OracleBaseDao implements ReizigerDao{
 			while (rs.next()) {
 				reis = new Reiziger(rs.getInt("REIZIGERID"), rs.getString("VOORLETTERS"), 
 						rs.getString("ACHTERNAAM"), 
-						rs.getDate("GEBORTEDATUM"), ov.findKaartById(rs.getInt("REIZIGERID")));
+						rs.getDate("GEBORTEDATUM"));
+						reis.setOVKaarten(ov.findKaartById(reis));
 				lijst.add(reis);
 			}
 			rs.close();
@@ -51,7 +73,8 @@ public class ReizigerOracleDaolmpl extends OracleBaseDao implements ReizigerDao{
 		     ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				reis = new Reiziger(rs.getInt("REIZIGERID"), rs.getString("VOORLETTERS"), rs.getString("TUSSENVOEGSEL"), rs.getString("ACHTERNAAM"), rs.getDate("GEBORTEDATUM"), ov.findKaartById(rs.getInt("REIZIGERID")));
+				reis = new Reiziger(rs.getInt("REIZIGERID"), rs.getString("VOORLETTERS"), rs.getString("TUSSENVOEGSEL"), rs.getString("ACHTERNAAM"), rs.getDate("GEBORTEDATUM"));
+				reis.setOVKaarten(ov.findKaartById(reis));
 				lijst.add(reis);
 			}
 			rs.close();

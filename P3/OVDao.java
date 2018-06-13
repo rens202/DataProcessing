@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 public interface OVDao {
 	
-	public ArrayList<OVKaart> getOvKaart(int productid);
-	public ArrayList<OVKaart> findKaartById(int reizigerid);
-	public ArrayList<Product> getOvProduct(int kaartid);
+	public ArrayList<OVKaart> findKaartById(Reiziger reiziger);
+	public ArrayList<Product> getOvProduct(OVKaart ov);
 
 }

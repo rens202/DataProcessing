@@ -14,19 +14,8 @@ public class Main {
 	System.out.println("entering findall");
 	List<Reiziger> reizigers = x.findall();
 	System.out.println(reizigers);
-	for(Reiziger r : reizigers) {
-		System.out.println(r.getOVKaarten());
-		
-	}
-/*	Reiziger r1 = new Reiziger(55, "RD", "", "Dollee", Date.valueOf(LocalDate.of(2000, 10, 15)));
-	x.save(r1);*/
-	
-	Reiziger r2 = new Reiziger(55, "RD", "De", "Dollee", Date.valueOf(LocalDate.of(2000, 10, 15)));
-	x.update(r2);
-	
-	x.findbygbd(Date.valueOf(LocalDate.of(2000, 10, 15)));
-	
-	x.delete(r2);
+
+
 	
 	
 	}

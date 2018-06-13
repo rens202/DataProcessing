@@ -6,21 +6,21 @@ public class OVKaart {
 	private int kaartnummer;
 	private Date geldigtot;
 	private int saldo;
-	private int reizigerid;
+	private Reiziger reiziger;
 	private int klasse;
 
-public OVKaart(int reisid, Date gt, int sl, int kl, int ktnmr) {
+public OVKaart(Reiziger reisid, Date gt, int sl, int kl, int ktnmr) {
 	kaartnummer = ktnmr;
 	geldigtot = gt;
 	saldo = sl;
-	reizigerid = reisid;
+	reiziger = reisid;
 	klasse = kl;
 }
 
 @Override
 public String toString() {
-	return "OVKaart [kaartnummer=" + kaartnummer + ", geldigtot=" + geldigtot + ", saldo=" + saldo + ", reizigerid="
-			+ reizigerid + ", klasse=" + klasse + "]";
+	return "\nOVKaart \n kaartnummer=" + kaartnummer + "\n geldigtot=" + geldigtot + "\n saldo=" + saldo + "\n reizigerID: "
+			+ reiziger.toString2();
 }
 
 }

@@ -24,6 +24,14 @@ public class Reiziger {
 		
 	}
 	
+	public ArrayList<OVKaart> getOvkaarten() {
+		return ovkaarten;
+	}
+
+	public void setOvkaarten(ArrayList<OVKaart> ovkaarten) {
+		this.ovkaarten = ovkaarten;
+	}
+
 	public Reiziger(int ri, String vl, String ts, String an, Date gbd) {
 		gbdatum = gbd;
 		reizigerid = ri;
@@ -102,8 +110,22 @@ public class Reiziger {
 	
 	public String toString() {
 		String s = "";
-		s += naam + " is geboren op: ";
+		s += "\n\nReiziger " + voorletters + " is geboren op: ";
+		s += gbdatum;
+		s += "\n Heeft reizigerid: " + reizigerid + "\n" ;
+		s += "\nEn heeft de volgende ov kaarten: \n";
+		for(OVKaart item : ovkaarten) {
+			s+= item;
+			
+		}
+		return s;
+	}
+	
+	public String toString2() {
+		String s = "";
+		s += "Reiziger " + voorletters + " is geboren op: ";
 		s += gbdatum;
 		return s;
+		
 	}
 }

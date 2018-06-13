@@ -7,7 +7,7 @@ public class Product {
 	private String productNaam;
 	private String beschrijving;
 	private double prijs;
-	private ArrayList<OVKaart> kaarten;
+	private ArrayList<OVKaart> kaarten = new ArrayList<OVKaart>();
 	
 	public Product(int pn, String pna, String besch, double pr) {
 		productNummer = pn;
@@ -24,31 +24,27 @@ public class Product {
 		kaarten = ovka;
 	}
 	
+	public void addKaarten(OVKaart ov) {
+		kaarten.add(ov);
+	}
+	
 	@Override
 	public String toString() {
-		String s =  "\n\nProduct: \n"
-				+ "productNummer: " + productNummer 
-				+ ", productNaam: " + productNaam 
-				+ ", beschrijving: "+ beschrijving 
-				+ ", prijs: "+ prijs;
-		if(kaarten != null) {
-		for(OVKaart item : kaarten) {
-			s += item.toString2();
-			s += "\n";
-		}}else {
-			s += " GEEN GEKOPPELDE KAARTEN \n" ;
-		}
+		String s = 
+				 "		\n-productNummer: " + productNummer + "\n"
+				+ "		-productNaam: " + productNaam + "\n"
+				+ "		-beschrijving: "+ beschrijving + "\n"
+				+ "		-prijs: "+ prijs + "\n";
+		if(kaarten == null) {
+			return s;
+		}else {
+		for(OVKaart ov : kaarten) {
+			s += "\n 	kaartnummer: " + ov.getKaartnummer();
+			
+		}}
 		return s;
 	}
 	
-	public String toString2() {
-		String s =  "\n\nProduct: \n"
-				+ "productNummer: " + productNummer 
-				+ ", productNaam: " + productNaam 
-				+ ", beschrijving: "+ beschrijving 
-				+ ", prijs: "+ prijs;
-		return s;
-	}
 
 	public int getProductNummer() {
 		return productNummer;
